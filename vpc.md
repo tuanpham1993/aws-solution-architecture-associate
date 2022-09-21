@@ -1,0 +1,118 @@
+- cidr
+    10.0.0.0/16 - 16 bits for host
+- private ip ranges
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+- vpc
+    - has one default
+    - max 5 per region
+    - max 5 cidr per vpc (/28 - /16)
+    - vpc cidr should NOT overlap with other networkds to connect
+- subnet
+    - 1 az
+    - 1 cidr
+    - 5 ip in cidr are reserved (fist 4 and list 1)
+- internet gateway
+    - attach to only 1 vpc
+- router table
+    - has one main table for each vpc
+    - associate with subnets
+- bastion hosts
+- nat instance
+    - disable source / destination check
+    - has elastic ip
+- nat gateway
+    - 1 az
+    - accept request from other subnets only
+    - no need to configure security group
+    - high availability
+        - multiple nat in multiple az
+- ACL
+    - for subnet
+    - stateless
+    - have a number, low number has higher priority
+    - default deny all
+    - default ACL
+        - accept everything
+    - ephemeral port
+- security group
+    - for ec2
+    - statefull
+    - only allow
+    - default allow all out bound
+- vpc peering
+    - must not have overlapping cirds
+    - not transitive
+    - must update route tables in each vpc
+- vpc endpoints
+    - allow connect to aws services using private network
+    - types
+        - interface endpoints
+            - provisions an eni as entry point (private ip)
+            - support most services
+            - cost per hour + per GB
+        - gateway endpoints
+            - provisions a gateway
+            - s3 and dynamodb
+            - free
+- flow logs
+    - capture ip traffic going into
+        - vpc
+        - subnet
+        - eni
+    - to cloud watch
+        - cloudwatch contributor insight
+        - cloudwatch alarm
+            - sns
+    - to S3
+        - athena
+            - quicksight
+- site to site vpn
+    - virtual private gateway - enable Route Propagation
+    - custom gateway / nat device (public IP)
+    - enable ICMP protocol in SG to ping EC2
+    - cloudhub
+        - multiple VPN with one virtual private gateway
+- direct connect (DX)
+    - private connection from internal network to vpc or public aws services
+    - aws direct connect locations
+    - virtual private gateway (if access vpc)
+    - direct connect gateway (connect multiple vpc in different regions)
+    - 1 month to setup
+    - types
+        - dedicated connections
+            - request aws
+        - hosted connections
+            - request partners
+    - encryption
+        - add vpn connection between internal network and direct connect location
+    - resiliency
+        - high resiliency: 2 locations
+        - max resiliency: 4 connections in 2 locations
+
+    - site to site vpn backup for direct connect
+- transit gateway
+    - connect to vpcs, direct connect gateway, vpc connection, ...
+    - support multi-cast
+    - site to site vpn ecmp
+        - multi vpn connection to transit gateway
+    - share direct connect between multiple accounts (transit gateway between direct connect gateway and accounts vpcs)
+- vpc traffic mirroing
+    - from eni to eni or NLB
+- ip v6
+    - egress-only internet gateway
+- vpc network firewall
+    - layer3 to layer7
+    - use gateway load balancer
+    - rules for all network in/out vpc
+        - ip, port, protocol, domain, regex
+- network cost
+    - free for traffic in
+    - free for instance in same az (if using private ip)
+    - 0.02 for cross az (0.01 if using private ip)
+    - 0.02 for cross region
+    - ingress traffic free
+    - minimize outgress
+    - using cloudfront ontop of s3 to save
+    - using vpc endpoint instead of nat gateway

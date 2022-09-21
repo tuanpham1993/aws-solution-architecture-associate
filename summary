@@ -1,0 +1,8 @@
+- iam: 5
+- ec2: 5, 2 keywords
+- ec2 storage
+    - ebs: 3, 4 keywords
+    - efs: 5, 4 keywords
+    - instance store
+- elb: 5, 4 keywords
+- asg: 4, 5 keywords
