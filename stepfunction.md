@@ -1,0 +1,5 @@
+- visual workflow
+- integrate
+    - lambda
+    - ec2, ecs, onprimse server
+    - can have human approval (via email)

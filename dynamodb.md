@@ -1,0 +1,27 @@
+- class
+    - standard
+    - standard-IA (infrequent access)
+- components
+    - table
+        - primary key
+            - partition key
+            - sort key
+        - items (max 400KB)
+            - attributes
+- modes
+    - provision
+    - on-demand
+        - auto scaling
+- dynamoDB accelerator (DAX)
+    - microsecond cache
+    - compatible with dynamo API (doesn't require edit app logic)
+- stream
+    - dynamodb streams
+    - kinesis dât streams
+- backup
+    - continuous backup
+        - import/export s3
+    - on-demand backup
+- notes
+    - global table
+    - ttl

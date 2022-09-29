@@ -1,0 +1,31 @@
+- languages
+    - nodejs
+    - go
+    - python
+    - java
+    - ruby
+    - c# (.net core, powercell)
+    - custom
+
+    - container image
+        - must implement Lambda runtime API
+
+- limit
+    - memory: 10GB
+    - timeout: 15m
+    - env: 4KB
+    - /tmp: 10GB
+    - concurrent: 1000
+
+    - zip: 50MB
+    - unzip: 250MB
+
+- lambda edge
+    - viewer request
+    - origin request
+    - origin response
+    - viewer response
+
+- network
+    - outside vpc
+    - in vpc (eni) to access resource in vpc

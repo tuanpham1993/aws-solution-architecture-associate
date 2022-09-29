@@ -1,0 +1,9 @@
+- handle versioning, env, auth, cache
+- integration
+    - lambda
+    - http
+    - aws services
+- endpoint types
+    - edge optimized
+    - regional
+    - private
