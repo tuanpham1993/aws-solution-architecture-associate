@@ -1,0 +1,10 @@
+- use SQL to analyze files on S3
+    - CSV, JSON
+    - Parquet, ORC
+- cost saving
+    - $5 per TB
+    - Compress data
+    - Use columnar data
+- improve performance
+    - Partition datasets in S3
+    - Use large file
