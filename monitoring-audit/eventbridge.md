@@ -1,0 +1,16 @@
+- source    
+    - ec2, s3, cron, ...
+- target
+    - compute services
+    - intergration services
+    - orchestration services
+    - maintenance services
+- rules
+- archive / replay event
+- event bus
+    - default
+    - custom
+
+    - access by resource base policy
+- schema
+    - schema registry

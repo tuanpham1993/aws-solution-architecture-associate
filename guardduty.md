@@ -1,0 +1,8 @@
+- monitor for malicious activity
+    - cloudtrail event log
+    - vpc flow log
+    - dns log
+    - k8s audit log
+- notes
+    - cloudwatch event to notified
+    - cryptocurrency attack

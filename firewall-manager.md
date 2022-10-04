@@ -1,0 +1,6 @@
+- manage rules cross organization and for future accounts
+    - waf
+    - shield advanced
+    - security groups
+    - network firewall
+    - dns firewall

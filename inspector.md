@@ -1,0 +1,4 @@
+- scan ec2 and ecr images for vulnerabilities, unintended network accessibility
+- send findings to
+    - aws security hub
+    - aws event bridge

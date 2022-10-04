@@ -1,0 +1,14 @@
+- layer 7
+- define rules
+    - ip
+    - header, uri, body, ...
+    - size, geo
+    - rate (for ddos)
+
+    - rule group
+- deploy on 
+    - ALB
+    - API gateway
+    - cloudfront
+    - appsync graphql api
+    - cognito user pool

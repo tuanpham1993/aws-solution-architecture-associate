@@ -1,0 +1,4 @@
+- use machine learing to discover and protect sensitive data in aws s3
+- send to
+    - cloudwatch events
+    - eventBridge
