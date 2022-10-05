@@ -1,4 +1,0 @@
-- 2 tier
-    - shield standard
-    - shield advanced
-        - use waf and others to protect from ddos attack
