@@ -36,11 +36,7 @@
     - default ACL
         - accept everything
     - ephemeral port
-- security group
-    - for ec2
-    - statefull
-    - only allow
-    - default allow all out bound
+
 - vpc peering
     - must not have overlapping cirds
     - not transitive
