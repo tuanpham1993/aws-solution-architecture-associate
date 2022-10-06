@@ -39,9 +39,3 @@
             - ebs
             - efs
             - fsx
-- app runner
-    - can deploy
-        - code
-        - container
-    - configure setting
-    - can connect to vpc
