@@ -1,0 +1,11 @@
+- kinesis data firehose
+    - load stream data to
+        - aws: s3, elastic search, redshift, ...
+        - http
+        - 3rd: datadog, splunk, mongodb, ...
+    - buffer
+        - min size 1mb
+        - min interval 60s
+    - transform data using lambda
+    - transfer failed or all data to s3
+    

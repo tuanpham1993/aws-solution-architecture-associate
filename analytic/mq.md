@@ -1,0 +1,5 @@
+- message broker, have queue and topic features
+- run in dedicated machine, failover
+- engines
+    - apache activeMQ
+    - rabbitMQ
