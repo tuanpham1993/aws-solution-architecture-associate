@@ -12,16 +12,17 @@
 - subnet
     - 1 az
     - 1 cidr
-    - 5 ip in cidr are reserved (fist 4 and list 1)
+    - 5 ip in cidr are reserved (fist 4 and last 1)
 - internet gateway
     - attach to only 1 vpc
 - router table
     - has one main table for each vpc
     - associate with subnets
+        - subnet can only associate with 1 route table
+        - if not then main route table
 - bastion hosts
 - nat instance
     - disable source / destination check
-    - has elastic ip
 - nat gateway
     - 1 az
     - accept request from other subnets only
@@ -29,47 +30,44 @@
     - high availability
         - multiple nat in multiple az
 - ACL
-    - for subnet
+    - for subnet (subnet can only assocciate with 1 NACL)
     - stateless
     - have a number, low number has higher priority
-    - default deny all
+    - newly created ACL default deny all
     - default ACL
         - accept everything
+        - attach to newly created subnet
     - ephemeral port
 
 - vpc peering
     - must not have overlapping cirds
     - not transitive
     - must update route tables in each vpc
+
+- privateLink
+    - connect vpc with other services using private network
+
 - vpc endpoints
-    - allow connect to aws services using private network
-    - types
-        - interface endpoints
-            - provisions an eni as entry point (private ip)
-            - support most services
-            - cost per hour + per GB
-        - gateway endpoints
-            - provisions a gateway
-            - s3 and dynamodb
-            - free
-- flow logs
-    - capture ip traffic going into
-        - vpc
-        - subnet
-        - eni
-    - to cloud watch
-        - cloudwatch contributor insight
-        - cloudwatch alarm
-            - sns
-    - to S3
-        - athena
-            - quicksight
+    - interface endpoints
+        - allow connect to service integrate with privateLink
+            - many aws services
+            - custom VPC endpoint services from other account
+        - provisions an eni as entry point (private ip)
+        - cost per hour + per GB
+    - gateway endpoints
+        - provisions a gateway
+        - s3 and dynamodb
+        - free
+
 - site to site vpn
-    - virtual private gateway - enable Route Propagation
-    - custom gateway / nat device (public IP)
-    - enable ICMP protocol in SG to ping EC2
+    - customer gateway / nat device (public IP)
+    - virtual private gateway
+        - must enable Route Propagation in route table
+        - or manual add rule to route table to route to customer gateway via virtual private gateway
+
     - cloudhub
-        - multiple VPN with one virtual private gateway
+        - allow remote in multiple VPN communicate with each other
+
 - direct connect (DX)
     - private connection from internal network to vpc or public aws services
     - aws direct connect locations
@@ -78,9 +76,7 @@
     - 1 month to setup
     - types
         - dedicated connections
-            - request aws
         - hosted connections
-            - request partners
     - encryption
         - add vpn connection between internal network and direct connect location
     - resiliency
@@ -94,6 +90,18 @@
     - site to site vpn ecmp
         - multi vpn connection to transit gateway
     - share direct connect between multiple accounts (transit gateway between direct connect gateway and accounts vpcs)
+- flow logs
+    - capture ip traffic going into
+        - vpc
+        - subnet
+        - eni
+    - to cloud watch
+        - cloudwatch contributor insight
+        - cloudwatch alarm
+            - sns
+    - to S3
+        - athena
+            - quicksight
 - vpc traffic mirroing
     - from eni to eni or NLB
 - ip v6
