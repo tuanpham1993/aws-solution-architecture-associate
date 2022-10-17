@@ -70,53 +70,58 @@
 
 - direct connect (DX)
     - private connection from internal network to vpc or public aws services
-    - aws direct connect locations
-    - virtual private gateway (if access vpc)
-    - direct connect gateway (connect multiple vpc in different regions)
     - 1 month to setup
     - types
         - dedicated connections
         - hosted connections
+
+    - aws direct connect locations
+    - virtual private gateway (if access vpc)
+    - must have direct connect gateway to connect to multiple vpc or multiple account
+        - direct connect gateway connect with virtual private gateways
+        - direct connect gateway connect with transit gateway
     - encryption
         - add vpn connection between internal network and direct connect location
     - resiliency
         - high resiliency: 2 locations
         - max resiliency: 4 connections in 2 locations
-
     - site to site vpn backup for direct connect
+
 - transit gateway
     - connect to vpcs, direct connect gateway, vpc connection, ...
     - support multi-cast
     - site to site vpn ecmp
         - multi vpn connection to transit gateway
-    - share direct connect between multiple accounts (transit gateway between direct connect gateway and accounts vpcs)
+
 - flow logs
-    - capture ip traffic going into
+    - capture info of ip traffic going into
         - vpc
         - subnet
         - eni
-    - to cloud watch
-        - cloudwatch contributor insight
-        - cloudwatch alarm
-            - sns
-    - to S3
-        - athena
-            - quicksight
+        - aws managed interfaces (elb, rds, ...)
+    - to cloud watch log or s3
 - vpc traffic mirroing
     - from eni to eni or NLB
 - ip v6
-    - egress-only internet gateway
+    - public only
+    - egress-only internet gateway (same as nat gateway)
 - vpc network firewall
     - layer3 to layer7
-    - use gateway load balancer
+    - use gateway load balancer internally
     - rules for all network in/out vpc
         - ip, port, protocol, domain, regex
+    - traffic filtering
+        - allow
+        - drop
+        - alert
+    - send logs to
+        - cloudwatch logs
+        - s3
+        - kinesis data firehose
 - network cost
-    - free for traffic in
-    - free for instance in same az (if using private ip)
-    - 0.02 for cross az (0.01 if using private ip)
-    - 0.02 for cross region
-    - ingress traffic free
+    - use private ip instead of public ip
+    - use same az
     - minimize outgress
+        - direct connect location in same aws region
     - using cloudfront ontop of s3 to save
     - using vpc endpoint instead of nat gateway
